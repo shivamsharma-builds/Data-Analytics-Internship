@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.*
+!.env.example
+*.sqlite
+*.db
+.DS_Store

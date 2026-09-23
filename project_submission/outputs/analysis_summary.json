@@ -1,0 +1,84 @@
+{
+  "records": 1470,
+  "features": 35,
+  "attrition_rate": 16.12,
+  "overtime_attrition_rate": 30.53,
+  "non_overtime_attrition_rate": 10.44,
+  "top_department": "Sales",
+  "top_role": "Sales Representative",
+  "priority_count": 229,
+  "medium_count": 360,
+  "low_count": 881,
+  "metrics": {
+    "records": 1470,
+    "attrition_count": 237,
+    "attrition_rate": 16.12,
+    "train_records": 1176,
+    "test_records": 294,
+    "accuracy": 0.7551,
+    "precision": 0.3563,
+    "recall": 0.6596,
+    "roc_auc": 0.7958,
+    "confusion_matrix": [
+      [
+        191,
+        56
+      ],
+      [
+        16,
+        31
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9227053140096618,
+        "recall": 0.7732793522267206,
+        "f1-score": 0.8414096916299559,
+        "support": 247.0
+      },
+      "1": {
+        "precision": 0.3563218390804598,
+        "recall": 0.6595744680851063,
+        "f1-score": 0.4626865671641791,
+        "support": 47.0
+      },
+      "accuracy": 0.7551020408163265,
+      "macro avg": {
+        "precision": 0.6395135765450608,
+        "recall": 0.7164269101559135,
+        "f1-score": 0.6520481293970675,
+        "support": 294.0
+      },
+      "weighted avg": {
+        "precision": 0.8321610169971703,
+        "recall": 0.7551020408163265,
+        "f1-score": 0.7808655186711412,
+        "support": 294.0
+      }
+    },
+    "features": [
+      "Age",
+      "MonthlyIncome",
+      "JobLevel",
+      "StockOptionLevel",
+      "TotalWorkingYears",
+      "YearsAtCompany",
+      "YearsInCurrentRole",
+      "YearsSinceLastPromotion",
+      "YearsWithCurrManager",
+      "JobSatisfaction",
+      "EnvironmentSatisfaction",
+      "WorkLifeBalance",
+      "JobInvolvement",
+      "DistanceFromHome",
+      "NumCompaniesWorked",
+      "OverTime",
+      "BusinessTravel",
+      "MaritalStatus",
+      "JobRole",
+      "Department"
+    ],
+    "target_definition": "Attrition == 'Yes'",
+    "note": "This is a historical classification baseline and a prioritization aid, not a causal or employment decision model."
+  }
+}
