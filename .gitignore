@@ -1,0 +1,55 @@
+backend/.venv/
+backend/__pycache__/
+backend/model.joblib
+frontend/node_modules/
+frontend/dist/
+data/*.csv
+*.pyc
+
+# Python
+
+pycache/
+
+*.py[cod]
+
+*.pyo
+
+# Flask
+
+backend/.venv/
+
+backend/model.joblib
+
+# Node
+
+frontend/node_modules/
+
+frontend/dist/
+
+# Dataset
+
+data/*.csv
+
+# Environment
+
+.env
+
+.env.*
+
+!.env.example
+
+# IDE
+
+.vscode/
+
+.idea/
+
+# OS
+
+.DS_Store
+
+Thumbs.db
+
+# Logs
+
+*.log
