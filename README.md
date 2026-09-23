@@ -1,86 +1,39 @@
 # IBM HR Attrition Analytics — Full Stack
 
-A complete HR attrition analytics application with a React dashboard, FastAPI backend, SQLite persistence, and CSV upload. The uploaded CSV becomes the active dataset and all dashboard metrics, charts, filters, and risk rows are recalculated from it.
+This package contains a React/Vite frontend, FastAPI backend, and a single all-in-one Jupyter notebook for the analytical workflow.
 
-## Architecture
+## Important: different CSV = different analysis
 
-- **Frontend:** React + Vite + Recharts
-- **Backend:** FastAPI + Python
-- **Database:** SQLite
-- **Data processing:** pandas
-- **API:** REST/JSON
-- **Upload:** multipart CSV endpoint with validation and persistence
+Upload a compatible CSV from the dashboard. The backend validates and normalizes the uploaded file, replaces the active dataset, recalculates employee risk signals, and returns fresh analysis. The frontend then reloads the new employee rows, so its KPIs, charts, filters, and risk table update to the uploaded data.
 
-## Run in VS Code / PowerShell
+The notebook has the same behavior: set `CSV_SOURCE` to a different CSV or use its upload widget. It reruns data cleaning, EDA, model training/scoring, and output generation for that file.
 
-### Terminal 1 — backend
+## Run backend
 
-```powershell
+```bash
 cd backend
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --port 8000
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
 ```
 
-Backend:
-- http://localhost:8000
-- Swagger API docs: http://localhost:8000/docs
+## Run frontend
 
-### Terminal 2 — frontend
-
-```powershell
-cd artifacts\hr-attrition-analytics
+```bash
+cd artifacts/hr-attrition-analytics
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173/
+Set `VITE_API_URL` if the backend is not on `http://localhost:8000`.
 
-The frontend uses `http://localhost:8000` by default. To change it, copy `.env.example` to `.env` and set `VITE_API_URL`.
+## Notebook
 
-## CSV upload
+Open:
 
-Click **Upload CSV** in the dashboard. The browser sends the file to the backend. The backend:
+`project_submission/IBM_HR_Attrition_Analytics_ALL_IN_ONE.ipynb`
 
-1. Validates the CSV.
-2. Normalizes common column-name variations.
-3. Calculates transparent employee prioritization signals.
-4. Replaces the active dataset in SQLite.
-5. Returns the new dataset metadata and analysis.
-6. The dashboard refreshes and recalculates its charts, filters, KPIs, and employee table.
+Use `CSV_SOURCE` for a path-based run or the interactive CSV upload cell in Jupyter/Colab.
 
-Required columns:
+## Validation
 
-`Attrition, Department, JobRole, OverTime, JobSatisfaction, EnvironmentSatisfaction, WorkLifeBalance, YearsAtCompany, JobLevel, StockOptionLevel, NumCompaniesWorked, DistanceFromHome`
-
-Optional columns include `EmployeeNumber, Age, MonthlyIncome, TotalWorkingYears`.
-
-The application intentionally does not make employment decisions. Risk scores are transparent prioritization signals for human review.
-
-## API endpoints
-
-- `GET /api/health`
-- `GET /api/dataset`
-- `GET /api/employees`
-- `GET /api/analysis`
-- `POST /api/dataset/upload`
-- `POST /api/dataset/reset`
-- `GET /api/export`
-
-## Backend tests
-
-```powershell
-cd backend
-python -m pytest -q
-```
-
-The test suite covers health, CSV upload/dataset replacement, dynamic analysis, and invalid-column validation.
-
-## One-command PowerShell launcher
-
-From the project root:
-
-```powershell
-.\start-dev.ps1
-```
-
-This opens the backend in a second PowerShell window and starts the frontend in the current terminal.
+See `TEST_REPORT.md`. Backend tests pass and the all-in-one notebook executes successfully. The frontend production build was not marked as passed because dependency installation timed out in the build environment.
